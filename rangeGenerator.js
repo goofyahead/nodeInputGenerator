@@ -6,8 +6,9 @@ program
   .version('0.0.1')
   .usage('[options] <file ...>')
   .option('-f, --from <n>', 'An integer argument', parseInt)
-  .option('-t, --to <n>', 'A float argument', parseInt)
-  .option('-s, --step <n>', 'A float argument', parseInt)
+  .option('-t, --to <n>', 'A integer argument', parseInt)
+  .option('-s, --step <n>', 'A integer argument', parseInt)
+  .option('-d, --dir <s>', 'directory to put files into')
   .parse(process.argv);
 
 if (!program.from && program.from != 0) console.log ('please set a starting value with -f or --from'.yellow);
@@ -20,5 +21,5 @@ for (var x = program.from; x < program.to; x++){
 	for (var z = x * program.step; z < ((x+1) * program.step); z++){
 		data = data + z + '\n';
 	}	
-	fs.writeFileSync(x + '-' + (x+1) + '.txt', data);
+	fs.writeFileSync(program.dir + x + '-' + (x+1) + '.txt', data);
 }
